@@ -1,0 +1,28 @@
+﻿
+@{ Layout = null; }
+
+@(Html.Kendo().Grid<KendoQsBoilerplate.Invoice>()
+      .Name("EmployeeSales")
+      .Columns(columns =>
+      {
+        columns.Bound(c => c.CustomerName);
+        columns.Bound(c => c.OrderDate);
+        columns.Bound(c => c.ProductName);
+        columns.Bound(c => c.UnitPrice);
+        columns.Bound(c => c.Quantity);
+        columns.Bound(c => c.Salesperson);
+      })
+      .ToolBar(toolbar => {
+            toolbar.Excel();
+            toolbar.Pdf();
+      })
+      .Pageable()
+      .Sortable(sortable => {
+          sortable.SortMode(GridSortMode.SingleColumn);
+      })
+      .Scrollable(scrollable => scrollable.Enabled(false))
+      .DataSource(dataSource => dataSource
+          .Ajax()
+          .Read(read => read.Action("Invoices_Read", "Invoice"))
+      )
+)
