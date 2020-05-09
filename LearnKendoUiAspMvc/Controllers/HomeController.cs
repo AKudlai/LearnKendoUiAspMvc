@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
+using Kendo.Mvc.UI;
+using Kendo.Mvc.Extensions;
+
 public class HomeController : Controller
     {
         private readonly NorthwindDBContext db = new NorthwindDBContext();
@@ -50,6 +53,12 @@ public class HomeController : Controller
             return new List<QuarterToDateSalesViewModel>() {
                      new QuarterToDateSalesViewModel {Current = sales.Sum(s=>s.Current), Target = 15000, OrderDate = statsTo}
             };
+        }
+
+        public ActionResult EmployeesList_Read([DataSourceRequest]DataSourceRequest request)
+        {
+            var employees = db.Employees.OrderBy(e => e.FirstName);
+            return Json(employees.ToDataSourceResult(request, ModelState), JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

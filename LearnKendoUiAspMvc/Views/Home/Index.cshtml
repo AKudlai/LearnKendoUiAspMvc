@@ -33,6 +33,21 @@
         <nav id="employee-list">
             <h3>Team members</h3>
             <!-- Employee List View -->
+        @(Html.Kendo().ListView<KendoQsBoilerplate.Employee>()
+            .Name("EmployeesList")
+            .ClientTemplateId("EmployeeItemTemplate")
+            .TagName("ul")
+            .DataSource(dataSource =>
+            {
+                dataSource.Read(read => read.Action("EmployeesList_Read", "Home"));
+                dataSource.PageSize(9);
+            })
+            .Selectable(s => s.Mode(ListViewSelectionMode.Single))
+            .Events(e => e
+                .DataBound("onListDataBound")
+                .Change("onCriteriaChange")
+            )
+            )
             <ul>
                 <li class="employee">
                     <div>
@@ -94,10 +109,48 @@
 </div>
 
 <!-- Kendo Templates -->
+<script type="text/x-kendo-tmpl" id="EmployeeItemTemplate">
+    <li class="employee">
+        <div>
+            <img src="@(Url.Content("~/content/employees/"))#:EmployeeId#-t.png" />
+            <span> #: FullName #</span>
+        </div>
+    </li>
+</script>
+
+<script type="text/x-kendo-tmpl" id="employeeAvatarTemplate">
+    <img src="@(Url.Content("~/content/employees/"))#:EmployeeId#.png" />
+    <span>#:FullName#</span>
+</script>
+
 <!-- /Kendo Templates -->
 
 @section Scripts {
     <script>
         //Custom Scripts
+        function onListDataBound(e) {
+            var listView = this;
+            var firstChild = listView.element.children().first();
+            listView.select(firstChild);
+            debugger;
+        }
+
+        function getSelectedEmployee() {
+            var employeeList = $("#EmployeesList").data("kendoListView"),
+                employee = employeeList.dataSource.getByUid(employeeList.select().attr("data-uid"));
+            return employee;
+        }
+
+        function updateEmployeeAvatar() {
+            var employee = getSelectedEmployee(),
+                template = kendo.template($("#employeeAvatarTemplate").html());
+
+            //apply template
+            $("#employee-about").html(template(employee));
+        }
+
+        function onCriteriaChange() {
+            updateEmployeeAvatar();
+        }
     </script>
 }

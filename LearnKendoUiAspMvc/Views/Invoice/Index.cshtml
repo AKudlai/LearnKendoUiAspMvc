@@ -6,7 +6,7 @@
       .Columns(columns =>
       {
         columns.Bound(c => c.CustomerName);
-        columns.Bound(c => c.OrderDate);
+        columns.Bound(c => c.OrderDate).Format("{0:MM/dd/yyyy}");
         columns.Bound(c => c.ProductName);
         columns.Bound(c => c.UnitPrice);
         columns.Bound(c => c.Quantity);
