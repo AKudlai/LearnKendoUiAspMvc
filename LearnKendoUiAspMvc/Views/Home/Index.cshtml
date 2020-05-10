@@ -152,5 +152,29 @@
         function onCriteriaChange() {
             updateEmployeeAvatar();
         }
+
+        function getEmployeeFilter() {
+            var employee = getSelectedEmployee(),
+                statsFrom = $("#StatsFrom").data("kendoDatePicker"),
+                statsTo = $("#StatsTo").data("kendoDatePicker");
+
+            var filter = {
+                employeeId: employee.EmployeeId,
+                salesPerson: employee.FullName,
+                statsFrom: statsFrom.value(),
+                statsTo: statsTo.value()
+            }
+            return filter;
+        }
+
+        function refreshGrid() {
+            var employeeSales = $("#EmployeeSales").data("kendoGrid");
+            employeeSales.dataSource.read();
+        }
+
+        function onCriteriaChange() {
+            updateEmployeeAvatar();
+            refreshGrid();
+        }
     </script>
 }

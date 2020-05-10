@@ -23,6 +23,8 @@
       .Scrollable(scrollable => scrollable.Enabled(false))
       .DataSource(dataSource => dataSource
           .Ajax()
-          .Read(read => read.Action("Invoices_Read", "Invoice"))
+          .Read(read => read.Action("Invoices_Read", "Invoice")
+          .Data("getEmployeeFilter"))
       )
+    .AutoBind(false)
 )

@@ -21,9 +21,14 @@ namespace LearnKendoUiAspMvc.Controllers
             return View();
         }
 
-        public ActionResult Invoices_Read([DataSourceRequest]DataSourceRequest request)
+        public ActionResult Invoices_Read([DataSourceRequest]DataSourceRequest request,
+            string salesPerson,
+            DateTime statsFrom,
+            DateTime statsTo)
         {
-            IQueryable<Invoice> invoices = db.Invoices;
+            var invoices = db.Invoices.Where(inv => inv.Salesperson == salesPerson)
+                .Where(inv => inv.OrderDate >= statsFrom && inv.OrderDate <= statsTo);
+
             DataSourceResult result = invoices.ToDataSourceResult(request, invoice => new {
                 OrderID = invoice.OrderID,
                 CustomerName = invoice.CustomerName,
