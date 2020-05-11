@@ -1,0 +1,41 @@
+﻿@(Html.Kendo().Grid<LearnKendoUiAspMvc.Models.ViewModels.OrderViewModel>()
+    .Name("grid")
+    .ToolBar(tools=>
+    {
+        tools.Create();
+    })
+    .Columns(columns =>
+    {
+        columns.Bound(f => f.OrderID);
+        columns.Bound(f => f.ShipCountry);
+        columns.Bound(f => f.Freight);
+        columns.Command(command => {
+                                       command.Edit();
+                                       command.Destroy();
+        });
+    })
+    .Editable(editable => editable.Mode(GridEditMode.PopUp))
+    .DataSource(d =>
+    {
+        d.Ajax()
+            .Model(model =>
+            {
+                model.Id(product => product.OrderID); // Specify the property which is the unique identifier of the model.
+                model.Field(product => product.OrderID).Editable(false); // Make the OrderID property not editable.
+            })
+            .Create(create => create.Action("CreateOrders", "Grid")) // Action invoked when the user saves a new data item.
+            .Read(read => read.Action("ReadOrders", "Grid"))  // Action invoked when the Grid needs data.
+            .Update(update => update.Action("UpdateOrders", "Grid"))  // Action invoked when the user saves an updated data item.
+            .Destroy(destroy => destroy.Action("DestroyOrders", "Grid")); // Action invoked when the user removes a data item.
+    })
+    .Events(e => e.Edit("onEdit"))
+    )
+
+
+<script>
+
+    function onEdit(e) {
+        $('[name="OrderID"]').attr({ readonly: true });
+    }
+
+</script>

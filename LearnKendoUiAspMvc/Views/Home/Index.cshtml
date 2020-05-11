@@ -1,5 +1,6 @@
 ﻿@using Prototyping.Ipsum
 @using Prototyping.Placeholdit
+
 @{
     ViewBag.Title = "Team Efficiency";
 }
@@ -104,6 +105,13 @@
                     @Html.Action("Index", "Invoice")
                 </div>
             </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h3>Representative orders</h3>
+                    <!-- Orders -->
+                    @Html.Action("Index", "Grid")
+                </div>
+            </div>
         </article>
     </section>
 </div>
@@ -132,7 +140,6 @@
             var listView = this;
             var firstChild = listView.element.children().first();
             listView.select(firstChild);
-            debugger;
         }
 
         function getSelectedEmployee() {
