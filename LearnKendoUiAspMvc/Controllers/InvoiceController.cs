@@ -42,6 +42,28 @@ namespace LearnKendoUiAspMvc.Controllers
             return Json(result);
         }
 
+        public ActionResult UpdateInvoice([DataSourceRequest]DataSourceRequest request, Invoice invoice)
+        {
+            if (ModelState.IsValid)
+            {
+                var invoiceEnt = db.Invoices.FirstOrDefault(inv => inv.OrderID == invoice.OrderID);
+
+                if (invoiceEnt != null)
+                {
+                    invoiceEnt.CustomerName = invoice.CustomerName;
+                    invoiceEnt.OrderDate = invoice.OrderDate;
+                    invoiceEnt.ProductName = invoice.ProductName;
+                    invoiceEnt.UnitPrice = invoice.UnitPrice;
+                    invoiceEnt.Quantity = invoice.Quantity;
+                    invoiceEnt.Salesperson = invoice.Salesperson;
+
+                    db.SaveChanges();
+                }
+            }
+
+            return Json(new[] { invoice }.ToDataSourceResult(request, ModelState));
+        }
+
         [HttpPost]
         public ActionResult Excel_Export_Save(string contentType, string base64, string fileName)
         {

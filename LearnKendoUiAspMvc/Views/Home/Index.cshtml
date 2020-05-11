@@ -40,7 +40,7 @@
             .DataSource(dataSource =>
             {
                 dataSource.Read(read => read.Action("EmployeesList_Read", "Home"));
-                dataSource.PageSize(9);
+                dataSource.PageSize(12);
             })
             .Selectable(s => s.Mode(ListViewSelectionMode.Single))
             .Events(e => e
@@ -132,7 +132,6 @@
             var listView = this;
             var firstChild = listView.element.children().first();
             listView.select(firstChild);
-            debugger;
         }
 
         function getSelectedEmployee() {
@@ -147,10 +146,6 @@
 
             //apply template
             $("#employee-about").html(template(employee));
-        }
-
-        function onCriteriaChange() {
-            updateEmployeeAvatar();
         }
 
         function getEmployeeFilter() {
