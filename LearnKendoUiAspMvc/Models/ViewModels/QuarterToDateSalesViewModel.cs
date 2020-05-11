@@ -1,6 +1,6 @@
 using System;
 
-namespace KendoQsBoilerplate
+namespace LearnKendoUiAspMvc.Models.ViewModels
 {
     public class QuarterToDateSalesViewModel
     {

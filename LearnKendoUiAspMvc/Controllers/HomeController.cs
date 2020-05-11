@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 using Kendo.Mvc.UI;
 using Kendo.Mvc.Extensions;
+using LearnKendoUiAspMvc.Models.ViewModels;
 
 public class HomeController : Controller
     {
