@@ -9,12 +9,13 @@ using System.Web.Mvc;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using KendoQsBoilerplate;
+ using LearnKendoUiAspMvc.Models;
 
-namespace LearnKendoUiAspMvc.Controllers
+ namespace LearnKendoUiAspMvc.Controllers
 {
     public class InvoiceController : Controller
     {
-        private NorthwindDBContext db = new NorthwindDBContext();
+        private readonly NorthwindDbContext _db = new NorthwindDbContext();
 
         public ActionResult Index()
         {
@@ -26,7 +27,7 @@ namespace LearnKendoUiAspMvc.Controllers
             DateTime statsFrom,
             DateTime statsTo)
         {
-            var invoices = db.Invoices.Where(inv => inv.Salesperson == salesPerson)
+            var invoices = _db.Invoices.Where(inv => inv.Salesperson == salesPerson)
                 .Where(inv => inv.OrderDate >= statsFrom && inv.OrderDate <= statsTo);
 
             DataSourceResult result = invoices.ToDataSourceResult(request, invoice => new {
@@ -46,7 +47,7 @@ namespace LearnKendoUiAspMvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                var invoiceEnt = db.Invoices.FirstOrDefault(inv => inv.OrderID == invoice.OrderID);
+                var invoiceEnt = _db.Invoices.FirstOrDefault(inv => inv.OrderID == invoice.OrderID);
 
                 if (invoiceEnt != null)
                 {
@@ -57,7 +58,7 @@ namespace LearnKendoUiAspMvc.Controllers
                     invoiceEnt.Quantity = invoice.Quantity;
                     invoiceEnt.Salesperson = invoice.Salesperson;
 
-                    db.SaveChanges();
+                    _db.SaveChanges();
                 }
             }
 
@@ -82,7 +83,7 @@ namespace LearnKendoUiAspMvc.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            _db.Dispose();
             base.Dispose(disposing);
         }
     }

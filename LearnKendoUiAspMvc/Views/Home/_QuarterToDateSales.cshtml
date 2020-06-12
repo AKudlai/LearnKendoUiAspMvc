@@ -1,0 +1,10 @@
+﻿@model TModel
+
+@(Html.Kendo().Chart<KendoQsBoilerplate.QuarterToDateSalesViewModel>()
+    .Name("EmployeeQuarterSales")
+    .HtmlAttributes(new { style = "height:30px;" })
+    .Series(series =>
+    {
+        series.Bullet(model => model.Current, model => model.Target);
+    })
+    )

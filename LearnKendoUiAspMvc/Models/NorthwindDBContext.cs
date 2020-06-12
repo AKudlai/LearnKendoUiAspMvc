@@ -1,15 +1,15 @@
 ﻿using System.Data.Entity;
+using KendoQsBoilerplate;
 
-
-namespace KendoQsBoilerplate
+namespace LearnKendoUiAspMvc.Models
 {
-    public class NorthwindDBContext : DbContext
+    public class NorthwindDbContext : DbContext
     {
-        public NorthwindDBContext() : base("NorthwindDB")
+        public NorthwindDbContext() : base("NorthwindDB")
         { }
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Orders> Orders { get; set; }
-        public DbSet<OrderDetails> Order_Details { get; set; }
+        public DbSet<OrderDetails> OrderDetails { get; set; }
     }
 }

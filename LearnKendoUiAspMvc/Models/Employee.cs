@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace KendoQsBoilerplate
+﻿namespace LearnKendoUiAspMvc.Models
 {
 
     public class Employee
@@ -13,12 +11,6 @@ namespace KendoQsBoilerplate
         public string HomePhone { get; set; }
         public string Notes { get; set; }
 
-        public string FullName
-        {
-            get
-            {
-                return string.Format("{0} {1}", FirstName, LastName);
-            }
-        }
+        public string FullName => $"{FirstName} {LastName}";
     }
 }

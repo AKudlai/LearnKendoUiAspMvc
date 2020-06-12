@@ -14,7 +14,7 @@
                                        command.Destroy();
         });
     })
-    .Editable(editable => editable.Mode(GridEditMode.PopUp))
+    .Editable(editable => editable.Mode(GridEditMode.PopUp).TemplateName("OrderEditor"))
     .DataSource(d =>
     {
         d.Ajax()

@@ -1,0 +1,19 @@
+﻿@model LearnKendoUiAspMvc.Models.ViewModels.OrderViewModel
+    
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-md-12 form-group">
+            @Html.Kendo().NumericTextBoxFor(model => model.OrderID)
+        </div>
+
+        <div class="col-md-12 form-group">
+            @Html.Kendo().TextBoxFor(model => model.ShipCountry)
+        </div>
+        <div class="col-md-12 form-group">
+            @Html.Kendo().NumericTextBoxFor(model => model.Freight)
+        </div>
+
+    </div>
+</div>  

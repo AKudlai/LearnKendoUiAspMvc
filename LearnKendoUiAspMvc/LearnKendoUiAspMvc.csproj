@@ -16,7 +16,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LearnKendoUiAspMvc</RootNamespace>
     <AssemblyName>LearnKendoUiAspMvc</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -84,9 +84,9 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
@@ -211,8 +211,10 @@
     </Compile>
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Invoice.cs" />
+    <Compile Include="Models\ViewModels\EmployeeDropdownViewModel.cs" />
+    <Compile Include="Models\ViewModels\EmployeeViewModel.cs" />
     <Compile Include="Models\ViewModels\MonthlySalesByEmployeeViewModel.cs" />
-    <Compile Include="Models\NorthwindDBContext.cs" />
+    <Compile Include="Models\NorthwindDbContext.cs" />
     <Compile Include="Models\Orders.cs" />
     <Compile Include="Models\Order_Detail.cs" />
     <Compile Include="Models\ViewModels\OrderViewModel.cs" />
@@ -389,7 +391,10 @@
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
     <Content Include="Views\Invoice\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\EmployeeEditor.cshtml" />
     <Content Include="Views\Grid\Index.cshtml" />
+    <Content Include="Views\Grid\EditorTemplates\OrderEditor.cshtml" />
+    <Content Include="Views\Home\_QuarterToDateSales.cshtml" />
     <Content Include="Views\TreeView\Index.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
