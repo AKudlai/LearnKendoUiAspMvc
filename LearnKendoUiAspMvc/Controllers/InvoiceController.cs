@@ -1,17 +1,12 @@
-﻿﻿using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Data;
-using System.Data.Entity;
 using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
-using KendoQsBoilerplate;
- using LearnKendoUiAspMvc.Models;
+using LearnKendoUiAspMvc.Models;
 
- namespace LearnKendoUiAspMvc.Controllers
+namespace LearnKendoUiAspMvc.Controllers
 {
     public class InvoiceController : Controller
     {
@@ -22,7 +17,7 @@ using KendoQsBoilerplate;
             return View();
         }
 
-        public ActionResult Invoices_Read([DataSourceRequest]DataSourceRequest request,
+        public ActionResult InvoicesRead([DataSourceRequest] DataSourceRequest request,
             string salesPerson,
             DateTime statsFrom,
             DateTime statsTo)
@@ -30,7 +25,8 @@ using KendoQsBoilerplate;
             var invoices = _db.Invoices.Where(inv => inv.Salesperson == salesPerson)
                 .Where(inv => inv.OrderDate >= statsFrom && inv.OrderDate <= statsTo);
 
-            DataSourceResult result = invoices.ToDataSourceResult(request, invoice => new {
+            DataSourceResult result = invoices.ToDataSourceResult(request, invoice => new
+            {
                 OrderID = invoice.OrderID,
                 CustomerName = invoice.CustomerName,
                 OrderDate = invoice.OrderDate,
@@ -43,7 +39,7 @@ using KendoQsBoilerplate;
             return Json(result);
         }
 
-        public ActionResult UpdateInvoice([DataSourceRequest]DataSourceRequest request, Invoice invoice)
+        public ActionResult UpdateInvoice([DataSourceRequest] DataSourceRequest request, Invoice invoice)
         {
             if (ModelState.IsValid)
             {
@@ -72,7 +68,7 @@ using KendoQsBoilerplate;
 
             return File(fileContents, contentType, fileName);
         }
-    
+
         [HttpPost]
         public ActionResult Pdf_Export_Save(string contentType, string base64, string fileName)
         {

@@ -1,5 +1,6 @@
 ﻿@using Prototyping.Ipsum
 @using Prototyping.Placeholdit
+@using LearnKendoUiAspMvc.Models
 
 @{
     ViewBag.Title = "Team Efficiency";
@@ -13,7 +14,7 @@
 
 <div class="app-wrapper">
     <!-- Menu Panel -->
-    <div class="hidden-xs" style="float:left;">
+    <div class="overflow-hidden" style="float:left;">
         <h3>Report Range</h3>
         <p>@Html.Label("Stats from")</p>
         <p>
@@ -34,21 +35,20 @@
         <nav id="employee-list">
             <h3>Team members</h3>
             <!-- Employee List View -->
-        @(Html.Kendo().ListView<KendoQsBoilerplate.Employee>()
-            .Name("EmployeesList")
-            .ClientTemplateId("EmployeeItemTemplate")
-            .TagName("ul")
-            .DataSource(dataSource =>
-            {
-                dataSource.Read(read => read.Action("EmployeesList_Read", "Home"));
-                dataSource.PageSize(12);
-            })
-            .Selectable(s => s.Mode(ListViewSelectionMode.Single))
-            .Events(e => e
-                .DataBound("onListDataBound")
-                .Change("onCriteriaChange")
-            )
-            )
+            @(Html.Kendo().ListView<Employee>()
+                .Name("EmployeesList")
+                .ClientTemplateId("EmployeeItemTemplate")
+                .TagName("ul")
+                .DataSource(dataSource =>
+                {
+                    dataSource.Read(read => read.Action("EmployeesList_Read", "Home"));
+                    dataSource.PageSize(12);
+                })
+                .Selectable(s => s.Mode(ListViewSelectionMode.Single))
+                .Events(e => e
+                    .DataBound("onListDataBound")
+                    .Change("onCriteriaChange")
+                ))
             <ul>
                 <li class="employee">
                     <div>
@@ -74,14 +74,14 @@
     <!-- /Menu Panel -->
 
     <section id="main-section-content" class="row">
-        <article class="col-xs-12">
+        <article class="col-md-12">
             <div id="employee-details" class="row">
-                <div id="employee-about" class="col-xs-12 col-lg-4">
+                <div id="employee-about" class="col-md-12 col-lg-4">
                     <!-- Employee Avatar -->
                     @Html.Placehold(90, 90, "Face")
                     <span>Full Name </span>
                 </div>
-                <div class="col-xs-12 col-lg-4">
+                <div class="col-md-12 col-lg-4">
                     <div class="chart-wrap">
                         <h3 class="chart-title">Quarter to date sales</h3>
                         <p class="sales-report-value" id="EmployeeQuarterSalesLabel"></p>
@@ -89,7 +89,7 @@
                         @Html.Placehold(430, 120, "Chart")
                     </div>
                 </div>
-                <div class="col-xs-12 col-lg-4">
+                <div class="col-md-12 col-lg-4">
                     <div class="chart-wrap">
                         <h3 class="chart-title">Monthly Average Sales</h3>
                         <p class="sales-report-value" id="EmployeeAverageSalesLabel"></p>
@@ -99,14 +99,14 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12">
-                    <h3>Representative orders</h3>
+                <div class="col-md-12">
+                    <h3>Representative Invoice</h3>
                     <!-- Invoices -->
                     @Html.Action("Index", "Invoice")
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12">
+                <div class="col-md-12">
                     <h3>Representative orders</h3>
                     <!-- Orders -->
                     @Html.Action("Index", "Grid")

@@ -1,8 +1,9 @@
-﻿
+﻿@using LearnKendoUiAspMvc.Models
+
 @{ Layout = null; }
 
 
-@(Html.Kendo().Grid<KendoQsBoilerplate.Invoice>()
+@(Html.Kendo().Grid<Invoice>()
     .Name("EmployeeSales")
     .Columns(columns =>
     {
@@ -33,7 +34,7 @@
               model.Id(invoice => invoice.OrderID);
               model.Field(field => field.OrderID).Editable(false);
           })
-          .Read(read => read.Action("Invoices_Read", "Invoice")
+          .Read(read => read.Action("InvoicesRead", "Invoice")
           .Data("getEmployeeFilter"))
           .Update(create => create.Action("UpdateInvoice", "Invoice"))
     )

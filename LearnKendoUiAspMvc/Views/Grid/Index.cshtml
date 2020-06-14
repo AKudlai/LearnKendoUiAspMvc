@@ -1,4 +1,6 @@
-﻿@(Html.Kendo().Grid<LearnKendoUiAspMvc.Models.ViewModels.OrderViewModel>()
+﻿@using LearnKendoUiAspMvc.Models.ViewModels
+
+@(Html.Kendo().Grid<OrderViewModel>()
     .Name("grid")
     .ToolBar(tools=>
     {

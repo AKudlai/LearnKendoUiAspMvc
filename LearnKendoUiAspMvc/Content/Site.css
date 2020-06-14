@@ -1,4 +1,16 @@
 ﻿/* Global */
+.k-widget .container,
+.k-widget .container-fluid,
+.k-widget [class^=col-] {
+    box-sizing: border-box;
+}
+
+.k-window .container,
+.k-window .container-fluid,
+.k-window [class^=col-] {
+    box-sizing: border-box;
+}
+
 img {
     height: auto;
     max-width: 100%;
@@ -80,6 +92,7 @@ article {
     text-transform: uppercase;
     font-size: 28px;
 }
+
 /* Small Devices, Tablets, and Up */
 @media only screen and (min-width : 768px) {
     #employee-about {

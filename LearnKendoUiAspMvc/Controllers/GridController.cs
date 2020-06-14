@@ -5,8 +5,7 @@ using System.Web.Mvc;
 using Kendo.Mvc.Extensions; // You need this to be able to use the ToDataSourceResult() method for processing the request.
 using Kendo.Mvc.UI; // You need this to be able to use the DataSourceRequest class and attribute to parse the request.
 
-using LearnKendoUiAspMvc.Models.ViewModels; 
-
+using LearnKendoUiAspMvc.Models.ViewModels;
 
 
 namespace LearnKendoUiAspMvc.Controllers
@@ -26,12 +25,12 @@ namespace LearnKendoUiAspMvc.Controllers
             return View();
         }
 
-        public ActionResult ReadOrders([DataSourceRequest]DataSourceRequest request)
+        public ActionResult ReadOrders([DataSourceRequest] DataSourceRequest request)
         {
             return Json(orders.ToDataSourceResult(request));
         }
 
-        public ActionResult CreateOrders([DataSourceRequest]DataSourceRequest request, OrderViewModel order)
+        public ActionResult CreateOrders([DataSourceRequest] DataSourceRequest request, OrderViewModel order)
         {
             if (ModelState.IsValid)
             {
@@ -46,7 +45,7 @@ namespace LearnKendoUiAspMvc.Controllers
             return Json(new[] { order }.ToDataSourceResult(request, ModelState));
         }
 
-        public ActionResult UpdateOrders([DataSourceRequest]DataSourceRequest request, OrderViewModel order)
+        public ActionResult UpdateOrders([DataSourceRequest] DataSourceRequest request, OrderViewModel order)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +65,7 @@ namespace LearnKendoUiAspMvc.Controllers
             return Json(new[] { order }.ToDataSourceResult(request, ModelState));
         }
 
-        public ActionResult DestroyOrders([DataSourceRequest]DataSourceRequest request, OrderViewModel order)
+        public ActionResult DestroyOrders([DataSourceRequest] DataSourceRequest request, OrderViewModel order)
         {
             // Delete the item in the data base or follow with the dummy data.
             orders.Remove(order);

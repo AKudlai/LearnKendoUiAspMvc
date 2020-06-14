@@ -1,5 +1,4 @@
 ﻿using System.Data.Entity;
-using KendoQsBoilerplate;
 
 namespace LearnKendoUiAspMvc.Models
 {
@@ -7,9 +6,13 @@ namespace LearnKendoUiAspMvc.Models
     {
         public NorthwindDbContext() : base("NorthwindDB")
         { }
+
         public DbSet<Invoice> Invoices { get; set; }
+
         public DbSet<Employee> Employees { get; set; }
+
         public DbSet<Orders> Orders { get; set; }
+
         public DbSet<OrderDetails> OrderDetails { get; set; }
     }
 }
