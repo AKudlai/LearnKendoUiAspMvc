@@ -1,4 +1,5 @@
-﻿@using Prototyping.Ipsum
+﻿@using LearnKendoUiAspMvc.Models
+@using Prototyping.Ipsum
 @using Prototyping.Placeholdit
 @using LearnKendoUiAspMvc.Models
 
@@ -35,20 +36,21 @@
         <nav id="employee-list">
             <h3>Team members</h3>
             <!-- Employee List View -->
-            @(Html.Kendo().ListView<Employee>()
-                .Name("EmployeesList")
-                .ClientTemplateId("EmployeeItemTemplate")
-                .TagName("ul")
-                .DataSource(dataSource =>
-                {
-                    dataSource.Read(read => read.Action("EmployeesList_Read", "Home"));
-                    dataSource.PageSize(12);
-                })
-                .Selectable(s => s.Mode(ListViewSelectionMode.Single))
-                .Events(e => e
-                    .DataBound("onListDataBound")
-                    .Change("onCriteriaChange")
-                ))
+        @(Html.Kendo().ListView<Employee>()
+            .Name("EmployeesList")
+            .ClientTemplateId("EmployeeItemTemplate")
+            .TagName("ul")
+            .DataSource(dataSource =>
+            {
+                dataSource.Read(read => read.Action("EmployeesList_Read", "Home"));
+                dataSource.PageSize(12);
+            })
+            .Selectable(s => s.Mode(ListViewSelectionMode.Single))
+            .Events(e => e
+                .DataBound("onListDataBound")
+                .Change("onCriteriaChange")
+            )
+            )
             <ul>
                 <li class="employee">
                     <div>
@@ -75,6 +77,22 @@
 
     <section id="main-section-content" class="row">
         <article class="col-md-12">
+            <button id="windowButton" class="k-button">Open</button>
+            <div>
+                @(Html.Kendo().Window()
+                    .Name("window")
+                    .Title("Window title")
+                    .Draggable(true)
+                    .Visible(false)
+                    .Width(500)
+                    .Height(300)
+                    .Content(@<text>
+                                 Static content of the Window.
+                              </text>)
+                    .Actions(actions => actions.Close())
+                    )
+            </div>
+
             <div id="employee-details" class="row">
                 <div id="employee-about" class="col-md-12 col-lg-4">
                     <!-- Employee Avatar -->
@@ -135,6 +153,18 @@
 
 @section Scripts {
     <script>
+
+        // Window
+        var myWindow = $("#window");
+
+        myWindow.center();
+
+        var myWindowData = $("window").data("kendoWindow");
+
+        $("#windowButton").click( function (e) {
+            myWindow.data("kendoWindow").open();
+        })
+        
         //Custom Scripts
         function onListDataBound(e) {
             var listView = this;

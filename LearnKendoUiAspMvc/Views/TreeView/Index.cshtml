@@ -1,0 +1,28 @@
+﻿@using LearnKendoUiAspMvc.Models.ViewModels
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Tree View</h2>
+
+@(Html.Kendo().TreeList<EmployeeViewModel>()
+    .Name("treeList")
+    /* Other configurations. */
+    .Events(events => {
+                          events.DataBinding("onDataBinding");
+                          events.DataBound("onDataBound");
+    })
+    )
+
+<script>
+    function onDataBinding(e) {
+        // Handle the dataBinding event.
+        var treeList = this;
+    }
+
+    function onDataBound(e) {
+        // Handle the dataBound event.
+        var treeList = e.sender;
+    }
+</script>
